@@ -126,14 +126,14 @@ public class Game extends JPanel{
                 instance();
                 inMotion();
             } else {
-                SoundEffects.Out.play();
+                SoundEffects.Out.play(); //Sound effect before exiting or closing the frame
                 System.exit(ABORT);
             }
         }
     }
 
     private void instance() {
-        speed = 2;
+        speed = 3;
         score1 = 0;
         score2 = 0;
     }
