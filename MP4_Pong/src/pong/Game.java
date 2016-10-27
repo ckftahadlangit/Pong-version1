@@ -122,7 +122,7 @@ public class Game extends JPanel{
             //displays the FINAL SCORE
             JOptionPane.showMessageDialog(this, "Player One <Cyan>: " + getScore1() + "\nPlayer Two <Pink>: " + getScore2(), "CONGRATULATIONS! ", JOptionPane.YES_NO_OPTION);
             //prompts a dialog asking whether the player wants to continue playing after the game is over
-            if (JOptionPane.showConfirmDialog(this, "Do you want to play again?", "Game Over", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            if (JOptionPane.showConfirmDialog(this, "Do you want to play again?", "GAME OVER", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 instance();
                 inMotion();
             } else {
