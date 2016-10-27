@@ -62,7 +62,7 @@ public class Game extends JPanel{
                 } //sets the speed of the powerUp
                 if (e.getKeyCode() == KeyEvent.VK_SPACE){
                     powerSpeed1+=3;
-                } //sets the speed of tje powerUp
+                } //sets the speed of the powerUp
                 if (e.getKeyCode() == KeyEvent.VK_ENTER){
                     powerSpeed2+=3;
                 }
@@ -80,9 +80,9 @@ public class Game extends JPanel{
 
     //drawing the sprites
     @Override
-    public void paint(Graphics graphics) { //function to draw the sprites
+    public void paint(Graphics graphics) { 
         super.paint(graphics);
-        //sets the color to grey
+        //sets the color to black
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0,0,getWidth(),getHeight());
         Graphics2D graph2d;
@@ -97,16 +97,16 @@ public class Game extends JPanel{
         //for player1
         graph2d.setColor(Color.CYAN);	//setting the score color to cyan for player 1
         graph2d.setFont(new Font("Impact", Font.PLAIN, 30));	//setting the font to Impact
-        graph2d.drawString(String.valueOf(getScore1()), 270, 30);	//printing it on 15 x 30 pixels in the canvass
+        graph2d.drawString(String.valueOf(getScore1()), 270, 30);	//printing it on a 270 by 30 canvass
         graph2d.setFont(new Font("Calibri", Font.PLAIN, 12));    //setting the font to Calibri
-        graph2d.drawString("Press Space to PowerUp!",100,300);
+        graph2d.drawString("Press Space to PowerUp!",100,300); //display or draws the words "Press ..." int the coordinates (100, 300)
 
         //for player2
         graph2d.setColor(Color.PINK); //setting the score color to pink for player2
         graph2d.setFont(new Font("Impact", Font.PLAIN, 30)); // setting the font to Impact
-        graph2d.drawString(String.valueOf(getScore2()), 300, 30);	//printing it on 200 x 30 pixels in the canvass
+        graph2d.drawString(String.valueOf(getScore2()), 300, 30);	//printing it on a 300 x 30 canvass
         graph2d.setFont(new Font("Calibri", Font.PLAIN, 12));    //setting the font to Calibri
-        graph2d.drawString("Press Enter to PowerUp!",350,300);
+        graph2d.drawString("Press Enter to PowerUp!",350,300); //display or draws the words "Press ..." int the coordinates (350, 300)
     }
 
     //the game is considered over when one player already reached 3 points
@@ -115,7 +115,7 @@ public class Game extends JPanel{
         SoundEffects.Score.play();
         speed = powerSpeed1 = powerSpeed2 = 2; //resets the speed to normal
         SoundEffects.BackgroundMusic.loop();
-        if(score1 == 3 || score2 == 3 ) {
+        if(score1 == 3 || score2 == 3 ) { //checks if a player already reached 3 points
             SoundEffects.GameOverSound.play();
             //displays the FINAL SCORE
             JOptionPane.showMessageDialog(this, "Player 1: " + getScore1() + "\nPlayer 2: " + getScore2(), "Player Status", JOptionPane.YES_NO_OPTION);
@@ -124,7 +124,7 @@ public class Game extends JPanel{
                 instance();
                 inMotion();
             } else {
-                SoundEffects.Out.play();
+                SoundEffects.Out.play(); //plays the sound effect when the user chose to exit
                 System.exit(ABORT);
             }
         }
@@ -139,7 +139,7 @@ public class Game extends JPanel{
     private void inMotion() throws InterruptedException{
         while (true){
             if(score1 == 3 || score2 == 3){
-                gameOver(); //the game is Over but prompts a message if the player wants to replay
+                gameOver(); //calls the game over function since a player already reached 3 pts
             }
             motion();
             repaint();
