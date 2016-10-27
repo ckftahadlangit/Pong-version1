@@ -29,13 +29,13 @@ public class Ball {
         else if(collision(gameOn.rac1)){
             xa = gameOn.speedUp1;
             x = gameOn.rac1.getTopY() + DIAMETER;
-            gameOn.speedUp1 += 0.5; //the ball speeds up after the ball collides with the racquet
+            gameOn.speedUp1 += 0.25; //the ball speeds up after the ball collides with the racquet, corners and edges
         }
         //for player2
         else if(collision(gameOn.rac2)){
             xa =- gameOn.speedUp2;
             x = gameOn.rac2.getTopY() - DIAMETER;
-            gameOn.speedUp2 +=0.5; //the ball speeds up after the ball collides with the racquet
+            gameOn.speedUp2 +=0.5; //the ball speeds up after the ball collides with the racquet, corners and edges
         }
         else if (y + ya < 0)
             ya = gameOn.speedUp1;
