@@ -21,13 +21,15 @@ public class Racquet {
         this.pos = pos;
         this.x = x;
     }
-
+    
+    //motion of the racquet
     public void motion(){
         if((xa + x < gameOn.getHeight()  - HEIGHT) && (xa + x > 0)){
             x = x + xa;
         }
     }
-
+    
+    //paints the sprites 
     public void paintSprite(Graphics2D graph2d) {
         graph2d.fillRect(pos,(int) x,WIDTH, HEIGHT );
     }
