@@ -22,8 +22,8 @@ public class Game extends JPanel{
     Racquet rac2 = new Racquet(this,560,0);
     int score1 = 0;
     int score2 = 0;
-    double speed = 5, speedUp1 = 5,  speedUp2 = 5;
-    double powerSpeed1 = 4, powerSpeed2 = 4;
+    double speed, speedUp1, speedUp2;
+    double powerSpeed1 = 10, powerSpeed2 = 10;
 
     private int getScore1(){
         return score1;
@@ -31,6 +31,8 @@ public class Game extends JPanel{
     private int getScore2(){return score2;}
 
     public Game(){
+        speed = speedUp1 = speedUp2 = 3;
+
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -80,9 +82,9 @@ public class Game extends JPanel{
 
     //drawing the sprites
     @Override
-    public void paint(Graphics graphics) { 
+    public void paint(Graphics graphics) {
         super.paint(graphics);
-        //sets the color to black
+        //sets the backgrounf color to black
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0,0,getWidth(),getHeight());
         Graphics2D graph2d;
@@ -97,34 +99,34 @@ public class Game extends JPanel{
         //for player1
         graph2d.setColor(Color.CYAN);	//setting the score color to cyan for player 1
         graph2d.setFont(new Font("Impact", Font.PLAIN, 30));	//setting the font to Impact
-        graph2d.drawString(String.valueOf(getScore1()), 270, 30);	//printing it on a 270 by 30 canvass
+        graph2d.drawString(String.valueOf(getScore1()), 270, 30);	//printing it on 270 by 30 canvass
         graph2d.setFont(new Font("Calibri", Font.PLAIN, 12));    //setting the font to Calibri
-        graph2d.drawString("Press Space to PowerUp!",100,300); //display or draws the words "Press ..." int the coordinates (100, 300)
+        graph2d.drawString("Player 1: Press Space to PowerUp!",100,300);
 
         //for player2
         graph2d.setColor(Color.PINK); //setting the score color to pink for player2
         graph2d.setFont(new Font("Impact", Font.PLAIN, 30)); // setting the font to Impact
-        graph2d.drawString(String.valueOf(getScore2()), 300, 30);	//printing it on a 300 x 30 canvass
+        graph2d.drawString(String.valueOf(getScore2()), 300, 30);	//printing it on 300 by 30 canvass
         graph2d.setFont(new Font("Calibri", Font.PLAIN, 12));    //setting the font to Calibri
-        graph2d.drawString("Press Enter to PowerUp!",350,300); //display or draws the words "Press ..." int the coordinates (350, 300)
+        graph2d.drawString("Player 2: Press Enter to PowerUp!",350,300);
     }
 
     //the game is considered over when one player already reached 3 points
     public void gameOver() throws InterruptedException {
         SoundEffects.BackgroundMusic.stop();
         SoundEffects.Score.play();
-        speed = powerSpeed1 = powerSpeed2 = 2; //resets the speed to normal
+        speed = powerSpeed1 = powerSpeed2 = 2; //resets all the speed to normal
         SoundEffects.BackgroundMusic.loop();
-        if(score1 == 3 || score2 == 3 ) { //checks if a player already reached 3 points
+        if(score1 == 3 || score2 == 3 ) {
             SoundEffects.GameOverSound.play();
             //displays the FINAL SCORE
-            JOptionPane.showMessageDialog(this, "Player 1: " + getScore1() + "\nPlayer 2: " + getScore2(), "Player Status", JOptionPane.YES_NO_OPTION);
+            JOptionPane.showMessageDialog(this, "Player One <Cyan>: " + getScore1() + "\nPlayer Two <Pink>: " + getScore2(), "CONGRATULATIONS! ", JOptionPane.YES_NO_OPTION);
             //prompts a dialog asking whether the player wants to continue playing after the game is over
             if (JOptionPane.showConfirmDialog(this, "Do you want to play again?", "Game Over", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 instance();
                 inMotion();
             } else {
-                SoundEffects.Out.play(); //plays the sound effect when the user chose to exit
+                SoundEffects.Out.play();
                 System.exit(ABORT);
             }
         }
@@ -139,7 +141,7 @@ public class Game extends JPanel{
     private void inMotion() throws InterruptedException{
         while (true){
             if(score1 == 3 || score2 == 3){
-                gameOver(); //calls the game over function since a player already reached 3 pts
+                gameOver(); // calls the game over function since a player already reached 3 pts
             }
             motion();
             repaint();
